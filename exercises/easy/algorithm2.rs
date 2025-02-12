@@ -72,7 +72,22 @@ impl<T> LinkedList<T> {
         }
     }
     pub fn reverse(&mut self) {
-        // TODO
+        let mut current = self.start;
+        while let Some(node_ptr) = current {
+            unsafe {
+                let node = node_ptr.as_mut();
+                // 交换 next 和 prev 指针
+                let tmp = node.next;
+                node.next = node.prev;
+                node.prev = tmp;
+                // 因为已经交换，原来的 next 存在 node.prev 中，所以这里继续访问 node.prev
+                current = node.prev;
+            }
+        }
+        // 交换链表的 start 和 end 指针
+        let tmp = self.start;
+        self.start = self.end;
+        self.end = tmp;
     }
 }
 
