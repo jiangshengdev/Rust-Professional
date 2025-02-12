@@ -65,13 +65,37 @@ impl<T> LinkedList<T> {
             },
         }
     }
-    pub fn merge(list_a: LinkedList<T>, list_b: LinkedList<T>) -> Self {
-        //TODO
-        Self {
-            length: 0,
-            start: None,
-            end: None,
+    pub fn merge(list_a: LinkedList<T>, list_b: LinkedList<T>) -> Self
+    where
+        T: Clone + PartialOrd,
+    {
+        let mut new_list = LinkedList::<T>::new();
+        let mut a_ptr = list_a.start;
+        let mut b_ptr = list_b.start;
+
+        unsafe {
+            // 逐个比较两个链表中的节点，将较小的元素加入 new_list 中
+            while let (Some(a), Some(b)) = (a_ptr, b_ptr) {
+                if (*a.as_ptr()).val <= (*b.as_ptr()).val {
+                    new_list.add((*a.as_ptr()).val.clone());
+                    a_ptr = (*a.as_ptr()).next;
+                } else {
+                    new_list.add((*b.as_ptr()).val.clone());
+                    b_ptr = (*b.as_ptr()).next;
+                }
+            }
+            // 如果 list_a 中还有剩余节点，则将它们全部添加到 new_list 中
+            while let Some(a) = a_ptr {
+                new_list.add((*a.as_ptr()).val.clone());
+                a_ptr = (*a.as_ptr()).next;
+            }
+            // 如果 list_b 中还有剩余节点，则将它们全部添加到 new_list 中
+            while let Some(b) = b_ptr {
+                new_list.add((*b.as_ptr()).val.clone());
+                b_ptr = (*b.as_ptr()).next;
+            }
         }
+        new_list
     }
 }
 
