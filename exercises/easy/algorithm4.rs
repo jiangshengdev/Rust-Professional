@@ -47,13 +47,44 @@ where
 
     // Insert a value into the BST
     fn insert(&mut self, value: T) {
-        //TODO
+        // 若树非空则调用递归插入，否则创建新的根节点
+        match self.root {
+            Some(ref mut node) => node.insert(value),
+            None => self.root = Some(Box::new(TreeNode::new(value))),
+        }
     }
 
     // Search for a value in the BST
     fn search(&self, value: T) -> bool {
-        //TODO
-        true
+        // 从根节点开始递归查找目标值
+        fn search_node<T: Ord>(node: &Box<TreeNode<T>>, value: &T) -> bool {
+            match node.value.cmp(value) {
+                Ordering::Equal => {
+                    // 找到目标值，返回 true
+                    true
+                }
+                Ordering::Greater =>
+                // 当前节点大于目标值，检查左子树
+                {
+                    node.left.as_ref().map_or(false, |n| {
+                        // 左子节点存在，递归查找目标值
+                        search_node(n, value)
+                    })
+                }
+                Ordering::Less =>
+                // 当前节点小于目标值，检查右子树
+                {
+                    node.right.as_ref().map_or(false, |n| {
+                        // 右子节点存在，递归查找目标值
+                        search_node(n, value)
+                    })
+                }
+            }
+        }
+        match &self.root {
+            Some(node) => search_node(node, &value),
+            None => false, // 空树直接返回 false
+        }
     }
 }
 
@@ -63,7 +94,29 @@ where
 {
     // Insert a node into the tree
     fn insert(&mut self, value: T) {
-        //TODO
+        match self.value.cmp(&value) {
+            Ordering::Greater => {
+                // 当前节点大于待插入值，则尝试插入到左子树中
+                if let Some(ref mut left) = self.left {
+                    left.insert(value);
+                } else {
+                    // 左子树为空，直接创建新节点
+                    self.left = Some(Box::new(TreeNode::new(value)));
+                }
+            }
+            Ordering::Less => {
+                // 当前节点小于待插入值，则尝试插入到右子树中
+                if let Some(ref mut right) = self.right {
+                    right.insert(value);
+                } else {
+                    // 右子树为空，直接创建新节点
+                    self.right = Some(Box::new(TreeNode::new(value)));
+                }
+            }
+            Ordering::Equal => {
+                // 值相同，不插入重复节点
+            }
+        }
     }
 }
 
