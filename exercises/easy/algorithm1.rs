@@ -18,6 +18,7 @@ impl<T> Node<T> {
         Node { val: t, next: None }
     }
 }
+
 #[derive(Debug)]
 struct LinkedList<T> {
     length: u32,
@@ -41,13 +42,18 @@ impl<T> LinkedList<T> {
     }
 
     pub fn add(&mut self, obj: T) {
+        // 新建一个节点并初始化，节点的 next 指针默认为 None
         let mut node = Box::new(Node::new(obj));
         node.next = None;
+        // 将节点转换为裸指针并包装到 Some 中
         let node_ptr = Some(unsafe { NonNull::new_unchecked(Box::into_raw(node)) });
         match self.end {
+            // 如果链表为空，则新节点既为头节点也为尾节点
             None => self.start = node_ptr,
+            // 否则将当前尾节点的 next 更新为指向新节点
             Some(end_ptr) => unsafe { (*end_ptr.as_ptr()).next = node_ptr },
         }
+        // 更新链表尾指针为新节点，并增加链表长度
         self.end = node_ptr;
         self.length += 1;
     }
@@ -57,18 +63,23 @@ impl<T> LinkedList<T> {
     }
 
     fn get_ith_node(&mut self, node: Option<NonNull<Node<T>>>, index: i32) -> Option<&T> {
+        // 如果当前节点为空，则说明索引超出范围，返回 None
         match node {
             None => None,
             Some(next_ptr) => match index {
+                // 当 index 为 0 时，返回当前节点的值
                 0 => Some(unsafe { &(*next_ptr.as_ptr()).val }),
+                // 否则递归查找下一个节点，索引递减
                 _ => self.get_ith_node(unsafe { (*next_ptr.as_ptr()).next }, index - 1),
             },
         }
     }
+
     pub fn merge(list_a: LinkedList<T>, list_b: LinkedList<T>) -> Self
     where
         T: Clone + PartialOrd,
     {
+        // 创建存放合并结果的新链表
         let mut new_list = LinkedList::<T>::new();
         let mut a_ptr = list_a.start;
         let mut b_ptr = list_b.start;
@@ -95,6 +106,7 @@ impl<T> LinkedList<T> {
                 b_ptr = (*b.as_ptr()).next;
             }
         }
+        // 返回合并后的链表
         new_list
     }
 }
@@ -168,6 +180,7 @@ mod tests {
             assert_eq!(target_vec[i], *list_c.get(i as i32).unwrap());
         }
     }
+
     #[test]
     fn test_merge_linked_list_2() {
         let mut list_a = LinkedList::<i32>::new();
