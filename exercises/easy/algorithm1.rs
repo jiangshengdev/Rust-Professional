@@ -66,11 +66,11 @@ impl<T> LinkedList<T> {
         // 如果当前节点为空，则说明索引超出范围，返回 None
         match node {
             None => None,
-            Some(next_ptr) => match index {
+            Some(current_ptr) => match index {
                 // 当 index 为 0 时，返回当前节点的值
-                0 => Some(unsafe { &(*next_ptr.as_ptr()).val }),
+                0 => Some(unsafe { &(*current_ptr.as_ptr()).val }),
                 // 否则递归查找下一个节点，索引递减
-                _ => self.get_ith_node(unsafe { (*next_ptr.as_ptr()).next }, index - 1),
+                _ => self.get_ith_node(unsafe { (*current_ptr.as_ptr()).next }, index - 1),
             },
         }
     }
