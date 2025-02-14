@@ -47,14 +47,20 @@ impl<T> LinkedList<T> {
     }
 
     pub fn add(&mut self, obj: T) {
+        // 创建一个新节点，并存储传入的对象
         let mut node = Box::new(Node::new(obj));
+        // 设置新节点的 next 指针为 None，因为它将成为链表的末尾
         node.next = None;
+        // 设置新节点的 prev 指针为当前链表的末尾节点 (self.end)
         node.prev = self.end;
+        // 将 Box 转换为原始指针，防止内存被回收
         let node_ptr = Some(unsafe { NonNull::new_unchecked(Box::into_raw(node)) });
+        // 判断当前链表是否为空：若为空，则新节点为起始节点；否则更新现有末尾节点的 next 指针指向新节点
         match self.end {
             None => self.start = node_ptr,
             Some(end_ptr) => unsafe { (*end_ptr.as_ptr()).next = node_ptr },
         }
+        // 更新链表的末尾节点为新节点并增加链表长度
         self.end = node_ptr;
         self.length += 1;
     }
