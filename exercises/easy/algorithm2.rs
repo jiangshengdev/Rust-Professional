@@ -23,6 +23,7 @@ impl<T> Node<T> {
         }
     }
 }
+
 #[derive(Debug)]
 struct LinkedList<T> {
     length: u32,
@@ -71,9 +72,10 @@ impl<T> LinkedList<T> {
             },
         }
     }
+
     pub fn reverse(&mut self) {
         let mut current = self.start;
-        while let Some(node_ptr) = current {
+        while let Some(mut node_ptr) = current {
             unsafe {
                 let node = node_ptr.as_mut();
                 // 交换 next 和 prev 指针
