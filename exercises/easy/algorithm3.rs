@@ -4,12 +4,12 @@
     you can use bubble sorting, insertion sorting, heap sorting, etc.
 */
 
-fn sort<T: Ord>(array: &mut [T]) {
+fn sort<T: Ord + Clone>(array: &mut [T]) {
     quicksort(array);
 }
 
 // 使用快速排序递归数组
-fn quicksort<T: Ord>(arr: &mut [T]) {
+fn quicksort<T: Ord + Clone>(arr: &mut [T]) {
     if arr.len() <= 1 {
         return;
     }
@@ -25,13 +25,13 @@ fn quicksort<T: Ord>(arr: &mut [T]) {
 }
 
 // 使用最后一个元素作为 pivot, 并调整数组, 返回 pivot 的最终位置
-fn partition<T: Ord>(arr: &mut [T]) -> usize {
+fn partition<T: Ord + Clone>(arr: &mut [T]) -> usize {
     let pivot_index = arr.len() - 1;
-    let pivot = &arr[pivot_index];
+    let pivot = arr[pivot_index].clone();
     let mut i = 0;
     // 遍历除 pivot 外的所有元素, 小于等于 pivot 的交换到左侧
     for j in 0..pivot_index {
-        if &arr[j] <= pivot {
+        if arr[j] <= pivot {
             arr.swap(i, j);
             i += 1;
         }
