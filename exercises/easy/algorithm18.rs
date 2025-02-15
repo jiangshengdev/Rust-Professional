@@ -10,6 +10,18 @@
 
     Hint: You can start by sorting the intervals by their starting point and then merge them one by one.
 */
+/*
+    合并区间
+    给定一个区间数组，其中每个区间由一对整数 [start, end] 表示，
+    合并所有重叠的区间，并返回一个不重叠区间的列表。
+
+    区间是闭区间，即区间 [start, end] 包括起始和结束点。
+
+    你需要实现函数 `merge_intervals(intervals: Vec<Vec<i32>>) -> Vec<Vec<i32>>`。
+    函数应返回一个包含所有合并区间的向量。
+
+    提示：你可以先按照区间的起始点排序，然后逐个合并重叠的区间。
+*/
 
 use std::fmt::{self, Display, Formatter};
 

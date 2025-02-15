@@ -8,6 +8,17 @@
 
     Hint: Consider normalizing the string by converting it to lowercase and removing non-alphabetical characters before checking.
 */
+/*
+    中文翻译:
+    回文检查
+    给定一个字符串，检查它是否为回文（即正读与倒读相同）。
+    实现时应忽略大小写差异和非字母字符。
+
+    你需要实现函数 `is_palindrome(s: String) -> bool`。
+    如果字符串是回文则返回 `true`，否则返回 `false`。
+
+    提示：在检查之前，可以通过将字符串转换为小写并去除非字母字符来归一化字符串。
+*/
 
 use std::fmt::{self, Display, Formatter};
 

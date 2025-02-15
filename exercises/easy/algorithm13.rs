@@ -10,6 +10,18 @@
 
     Hint: Consider normalizing the strings by removing non-alphabetical characters and converting to lowercase before checking.
 */
+/*
+    字母异位词检测
+    给定两个字符串，检查它们是否互为字母异位词。
+    字母异位词是通过重新排列另一个字符串的字母形成的单词或短语，
+    且精确使用所有原始字母一次。
+    这些字符串可能包含空格或标点，但在检测时需要忽略它们。
+
+    你需要实现函数 `are_anagrams(s1: String, s2: String) -> bool`。
+    如果两个字符串互为字母异位词，则函数应返回 `true`，否则返回 `false`。
+
+    提示：在检测前考虑通过移除非字母字符并转换为小写来标准化字符串。
+*/
 
 use std::fmt::{self, Display, Formatter};
 

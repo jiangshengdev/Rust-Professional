@@ -11,6 +11,19 @@
     Hint: Use the sum of the first `n` numbers and subtract the sum of the array elements to find the missing number.
 */
 
+/* 中文翻译
+    查找数组中缺失的数字
+    给定一个数组，其中包含范围从 1 到 n 的 n-1 个数字，找出缺失的数字。
+    数组未排序，并且除了一个数字以外，范围内的每个数字均出现一次。
+    需要以 O(n) 的时间复杂度和 O(1) 的空间复杂度解决这个问题。
+    实现函数 find_missing_number(nums: Vec<i32>) -> i32。
+    函数应返回缺失的数字。
+
+    要求找到时间复杂度为 O(n) 且空间复杂度为 O(1) 的最优解决方案。
+
+    提示：使用前 n 个数字的和减去数组元素的和来找出缺失的数字。
+*/
+
 use std::fmt::{self, Display, Formatter};
 
 pub fn find_missing_number(nums: Vec<i32>) -> i32 {

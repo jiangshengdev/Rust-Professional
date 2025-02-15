@@ -6,11 +6,20 @@
 
     Hint: You can solve this problem using bitwise operations.
 */
+/*
+    两个整数之和
+    给定两个整数，但不能使用 `+` 运算符，计算它们的和。
+    你需要实现函数 `get_sum(a: i32, b: i32) -> i32`。
+    该函数应返回两个整数 `a` 和 `b` 的和。
+
+    提示：你可以使用位运算来解决此问题。
+*/
 
 use std::fmt::{self, Display, Formatter};
 
 pub fn get_sum(a: i32, b: i32) -> i32 {
     // TODO: Implement the logic to calculate the sum of two integers without using `+`
+    // TODO: 使用位运算实现不使用 `+` 运算符计算两个整数之和的逻辑
     0 // Placeholder return value
 }
 

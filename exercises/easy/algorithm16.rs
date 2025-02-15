@@ -8,6 +8,16 @@
 
     Hint: Consider rotating the matrix layer by layer, starting from the outermost layer and working your way inward.
 */
+/*
+    旋转矩阵90度
+    给定一个二维矩阵，原地旋转90度。
+    必须在不使用额外矩阵存储的情况下完成旋转。
+
+    需要实现函数 `rotate_matrix_90_degrees(matrix: &mut Vec<Vec<i32>>)`。
+    该函数应原地旋转输入矩阵。
+
+    提示：考虑从最外层开始逐层旋转，向内逐层处理。
+*/
 
 use std::fmt::{self, Display, Formatter};
 

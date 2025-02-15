@@ -8,6 +8,16 @@
 
     Hint: Consider using matrix exponentiation to solve the problem in O(log n) time complexity.
 */
+/*
+    N阶斐波那契数
+    实现一个函数来计算第 n 个斐波那契数。
+    斐波那契数列定义如下：
+    F(0) = 0, F(1) = 1，当 n > 1 时，F(n) = F(n-1) + F(n-2)。
+
+    你需要实现函数 `fib(n: i32) -> i32` 来返回第 n 个斐波那契数。
+
+    提示：考虑使用矩阵快速幂算法以 O(log n) 时间复杂度求解。
+*/
 
 use std::fmt::{self, Display, Formatter};
 
