@@ -23,8 +23,33 @@
 use std::fmt::{self, Display, Formatter};
 
 pub fn is_palindrome(s: String) -> bool {
-    // TODO: Implement the logic to check if the string is a palindrome
-    false // Placeholder return value
+    // 筛选非字母字符，并将字母转换成小写后存入 vector 中
+    let filtered: Vec<char> = s
+        .chars()
+        .filter(|c| c.is_alphabetic())
+        .map(|c| c.to_ascii_lowercase())
+        .collect();
+
+    // 初始化左右两个指针用于检查对应字符
+    let mut left = 0;
+    let mut right = filtered.len().saturating_sub(1);
+
+    // 左右指针未交叉时
+    while left < right {
+        // 判断左右指针对应的字符是否一致
+        if filtered[left] != filtered[right] {
+            // 不一致则立即返回 false
+            return false;
+        }
+        // 当前字符一致，左指针右移
+        left += 1;
+
+        // 当前字符一致，右指针左移
+        right -= 1;
+    }
+
+    // 所有字符都相对应，返回 true
+    true
 }
 
 #[cfg(test)]
