@@ -18,9 +18,20 @@
 use std::fmt::{self, Display, Formatter};
 
 pub fn get_sum(a: i32, b: i32) -> i32 {
-    // TODO: Implement the logic to calculate the sum of two integers without using `+`
-    // TODO: 使用位运算实现不使用 `+` 运算符计算两个整数之和的逻辑
-    0 // Placeholder return value
+    // 将输入参数赋值给局部可变变量，便于后续操作
+    let mut x = a;
+    let mut y = b;
+    // 当进位不为0时，继续计算
+    while y != 0 {
+        // 同时为1的位产生进位
+        let carry = x & y;
+        // 异或操作相当于不带进位的相加
+        x = x ^ y;
+        // 进位左移一位，相当于乘以2
+        y = carry << 1;
+    }
+    // 得到最终的和
+    x
 }
 
 #[cfg(test)]
