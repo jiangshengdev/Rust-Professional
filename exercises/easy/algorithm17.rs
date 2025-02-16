@@ -22,8 +22,54 @@
 use std::fmt::{self, Display, Formatter};
 
 pub fn intersection(nums1: Vec<i32>, nums2: Vec<i32>) -> Vec<i32> {
-    // TODO: Implement the logic to find the intersection of two arrays
-    Vec::new() // Placeholder return value
+    // 复制原数组用于排序，避免修改原始向量
+    let mut sorted1 = nums1;
+    let mut sorted2 = nums2;
+
+    // 对第一个数组进行排序
+    sorted1.sort();
+
+    // 对第二个数组进行排序
+    sorted2.sort();
+
+    // 初始化双指针，分别指向两个数组的起始位置
+    let mut i = 0;
+    let mut j = 0;
+
+    // 用于存放交集结果
+    let mut result = Vec::new();
+
+    // 当两个指针都未超出各自数组时，进入比较循环
+    while i < sorted1.len() && j < sorted2.len() {
+        // 如果两个指针指向的值相等
+        if sorted1[i] == sorted2[j] {
+            // 如果结果为空或当前值与上一次添加的值不相等
+            if result.is_empty() {
+                // 添加到结果中
+                result.push(sorted1[i]);
+            } else {
+                // 检查是否与结果中最后一个元素不同
+                if *result.last().unwrap() != sorted1[i] {
+                    result.push(sorted1[i]);
+                }
+            }
+
+            // 同时将两个指针后移
+            i += 1;
+            j += 1;
+        }
+        // 如果第一个数组中的值较小，则移动第一个数组的指针
+        else if sorted1[i] < sorted2[j] {
+            i += 1;
+        }
+        // 否则移动第二个数组的指针
+        else {
+            j += 1;
+        }
+    }
+
+    // 返回最终的交集结果
+    result
 }
 
 #[cfg(test)]
