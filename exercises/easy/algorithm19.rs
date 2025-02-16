@@ -22,8 +22,53 @@
 use std::fmt::{self, Display, Formatter};
 
 pub fn fib(n: i32) -> i32 {
-    // TODO: Implement the logic to calculate the nth Fibonacci number using matrix exponentiation
-    0 // Placeholder return value
+    // 判断 n 是否为 0
+    if n == 0 {
+        // 返回 0 作为斐波那契数列第 0 项
+        return 0;
+    }
+
+    // 定义二维矩阵相乘函数，矩阵使用 2x2 数组表示
+    fn mat_mul(a: [[i32; 2]; 2], b: [[i32; 2]; 2]) -> [[i32; 2]; 2] {
+        // 初始化结果矩阵为全 0
+        let mut c = [[0, 0], [0, 0]];
+        // 计算矩阵第一行第一列
+        c[0][0] = a[0][0] * b[0][0] + a[0][1] * b[1][0];
+        // 计算矩阵第一行第二列
+        c[0][1] = a[0][0] * b[0][1] + a[0][1] * b[1][1];
+        // 计算矩阵第二行第一列
+        c[1][0] = a[1][0] * b[0][0] + a[1][1] * b[1][0];
+        // 计算矩阵第二行第二列
+        c[1][1] = a[1][0] * b[0][1] + a[1][1] * b[1][1];
+        // 返回乘法结果矩阵
+        c
+    }
+
+    // 定义矩阵快速幂函数，使用迭代计算
+    fn mat_pow(mut mat: [[i32; 2]; 2], mut power: i32) -> [[i32; 2]; 2] {
+        // 初始化结果为单位矩阵
+        let mut result = [[1, 0], [0, 1]];
+        // 当幂大于 0 时循环计算
+        while power > 0 {
+            // 如果幂为奇数，将结果矩阵和当前矩阵相乘
+            if power % 2 == 1 {
+                result = mat_mul(result, mat);
+            }
+            // 当前矩阵自乘，计算平方
+            mat = mat_mul(mat, mat);
+            // 将幂除以 2
+            power /= 2;
+        }
+        // 返回最终矩阵结果
+        result
+    }
+
+    // 定义斐波那契数列的基矩阵
+    let base = [[1, 1], [1, 0]];
+    // 计算基矩阵的 (n-1) 次幂
+    let res = mat_pow(base, n - 1);
+    // 返回结果矩阵的 [0][0] 元素，即为斐波那契数列第 n 项
+    res[0][0]
 }
 
 #[cfg(test)]
