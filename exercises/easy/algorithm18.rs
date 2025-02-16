@@ -26,8 +26,37 @@
 use std::fmt::{self, Display, Formatter};
 
 pub fn merge_intervals(intervals: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
-    // TODO: Implement the logic to merge overlapping intervals
-    Vec::new() // Placeholder return value
+    // 若区间列表为空，直接返回空数组
+    if intervals.is_empty() {
+        return Vec::new();
+    }
+
+    // 复制区间列表，并按照区间的起始点排序
+    let mut sorted_intervals = intervals;
+    sorted_intervals.sort_by(|a, b| a[0].cmp(&b[0]));
+
+    // 初始化合并后的区间数组
+    let mut merged: Vec<Vec<i32>> = Vec::new();
+
+    // 遍历每个排序后的区间进行合并
+    for interval in sorted_intervals {
+        // 如果合并数组为空，则直接将当前区间加入结果中
+        if merged.is_empty() {
+            merged.push(interval);
+        } else {
+            // 取出结果中最后一个区间用于比较
+            let last = merged.last_mut().unwrap();
+            // 如果当前区间与最后区间有重叠，则更新最后区间的结束点
+            if interval[0] <= last[1] {
+                last[1] = std::cmp::max(last[1], interval[1]);
+            } else {
+                // 如果无重叠，则将当前区间加入结果中
+                merged.push(interval);
+            }
+        }
+    }
+
+    merged
 }
 
 #[cfg(test)]
