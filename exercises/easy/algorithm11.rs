@@ -27,8 +27,17 @@
 use std::fmt::{self, Display, Formatter};
 
 pub fn find_missing_number(nums: Vec<i32>) -> i32 {
-    // TODO: Implement the logic to find the missing number
-    0 // Placeholder return value
+    // 计算实际应该有的数字个数
+    let n = (nums.len() + 1) as i32;
+
+    // 计算从 1 到 n 的总和
+    let expected = n * (n + 1) / 2;
+
+    // 遍历数组并计算当前数字的和
+    let actual: i32 = nums.iter().sum();
+
+    // 返回缺失的数字，即总和与数组中数字和之差
+    expected - actual
 }
 
 #[cfg(test)]
