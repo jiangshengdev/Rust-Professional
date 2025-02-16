@@ -23,29 +23,32 @@
     提示：在检测前考虑通过移除非字母字符并转换为小写来标准化字符串。
 */
 
+use std::collections::HashMap;
 use std::fmt::{self, Display, Formatter};
 
 pub fn are_anagrams(s1: String, s2: String) -> bool {
-    // 过滤第一个字符串的非字母字符并转换为小写
-    let mut chars1: Vec<char> = s1
-        .chars()
-        .filter(|ch| ch.is_alphabetic())
-        .map(|ch| ch.to_lowercase().next().unwrap())
-        .collect();
-    // 过滤第二个字符串的非字母字符并转换为小写
-    let mut chars2: Vec<char> = s2
-        .chars()
-        .filter(|ch| ch.is_alphabetic())
-        .map(|ch| ch.to_lowercase().next().unwrap())
-        .collect();
+    let mut counts: HashMap<char, i32> = HashMap::new();
 
-    // 对第一个字符串的字符数组进行排序
-    chars1.sort();
-    // 对第二个字符串的字符数组进行排序
-    chars2.sort();
+    // 遍历第一个字符串，将所有字母转为小写后计数（兼容多语言）
+    for ch in s1.chars() {
+        if ch.is_alphabetic() {
+            for lower in ch.to_lowercase() {
+                *counts.entry(lower).or_insert(0) += 1;
+            }
+        }
+    }
 
-    // 比较排序后的字符数组是否相同
-    chars1 == chars2
+    // 遍历第二个字符串，对应字母计数减少
+    for ch in s2.chars() {
+        if ch.is_alphabetic() {
+            for lower in ch.to_lowercase() {
+                *counts.entry(lower).or_insert(0) -= 1;
+            }
+        }
+    }
+
+    // 检查所有字母计数是否均为 0
+    counts.values().all(|&count| count == 0)
 }
 
 #[cfg(test)]
