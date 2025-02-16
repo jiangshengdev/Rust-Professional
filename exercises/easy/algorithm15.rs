@@ -22,9 +22,31 @@
 use std::fmt::{self, Display, Formatter};
 
 pub fn longest_substring_without_repeating_chars(s: String) -> i32 {
-    // TODO: Implement the logic to find the longest substring without repeating characters
-    // TODO: 实现查找最长无重复字符子串的逻辑
-    0 // Placeholder return value
+    // 将字符串转换为字符数组，便于使用索引访问字符
+    let chars: Vec<char> = s.chars().collect();
+    // 创建哈希表记录字符上次出现的位置
+    let mut map = std::collections::HashMap::<char, usize>::new();
+    // 用于记录当前窗口开始位置
+    let mut start = 0;
+    // 记录当前无重复字符子串的最大长度
+    let mut max_length = 0;
+    // 遍历字符数组获取字符及其索引
+    for (i, &c) in chars.iter().enumerate() {
+        // 如果字符在当前窗口内已出现，则调整窗口开始位置
+        if let Some(&prev_index) = map.get(&c) {
+            if (prev_index >= start) {
+                // 当前窗口长度与记录的最大长度作比较，更新最大长度
+                max_length = max_length.max(i - start);
+                // 更新窗口起始位置为之前出现字符的下一个位置
+                start = prev_index + 1;
+            }
+        }
+        // 记录当前字符的索引位置，帮助后续判断重复情况
+        map.insert(c, i);
+    }
+    // 最后一次更新窗口长度并比较最大值
+    max_length = max_length.max(chars.len() - start);
+    max_length as i32
 }
 
 #[cfg(test)]
