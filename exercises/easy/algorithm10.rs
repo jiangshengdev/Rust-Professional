@@ -2,6 +2,10 @@
     graph
     This problem requires you to implement a basic graph functio
 */
+/*
+    图
+    这个问题要求你实现一个基本的图功能
+*/
 
 use std::collections::{HashMap, HashSet};
 use std::fmt;

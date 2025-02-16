@@ -2,6 +2,10 @@
     dfs
     This problem requires you to implement a basic DFS traversal
 */
+/*
+    深度优先搜索 (DFS)
+    这个问题要求你实现一个基本的深度优先搜索遍历
+*/
 
 use std::collections::HashSet;
 

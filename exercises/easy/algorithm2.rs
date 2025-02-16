@@ -2,6 +2,10 @@
     double linked list reverse
     This problem requires you to reverse a doubly linked list
 */
+/*
+    双向链表反转
+    这个问题要求你反转一个双向链表
+*/
 
 use std::fmt::{self, Display, Formatter};
 use std::ptr::NonNull;

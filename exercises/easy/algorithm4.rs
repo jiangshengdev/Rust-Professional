@@ -2,6 +2,10 @@
     binary_search tree
     This problem requires you to implement a basic interface for a binary tree
 */
+/*
+    二叉搜索树
+    这个问题要求你实现一个基本的二叉树接口
+*/
 
 use std::cmp::Ordering;
 use std::fmt::Debug;

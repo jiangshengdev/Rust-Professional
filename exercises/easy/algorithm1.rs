@@ -2,6 +2,10 @@
     single linked list merge
     This problem requires you to merge two ordered singly linked lists into one ordered singly linked list
 */
+/*
+    单链表合并
+    这个问题要求你将两个有序的单链表合并为一个有序的单链表
+*/
 
 use std::fmt::{self, Display, Formatter};
 use std::ptr::NonNull;

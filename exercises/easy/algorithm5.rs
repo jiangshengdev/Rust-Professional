@@ -2,6 +2,10 @@
     bfs
     This problem requires you to implement a basic BFS algorithm
 */
+/*
+    bfs
+    这个问题要求你实现一个基本的广度优先搜索（BFS）算法
+*/
 
 use std::collections::VecDeque;
 

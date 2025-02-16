@@ -3,6 +3,11 @@
     This problem requires you to implement a sorting algorithm
     you can use bubble sorting, insertion sorting, heap sorting, etc.
 */
+/*
+    sort
+    这个问题要求你实现一个排序算法
+    你可以使用冒泡排序、插入排序、堆排序等。
+*/
 
 fn sort<T: Ord + Clone>(array: &mut [T]) {
     quicksort(array);

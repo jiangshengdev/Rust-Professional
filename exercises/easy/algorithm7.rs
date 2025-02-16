@@ -2,6 +2,10 @@
     stack
     This question requires you to use a stack to achieve a bracket match
 */
+/*
+    stack
+    这个问题要求你使用栈来实现括号匹配
+*/
 
 #[derive(Debug)]
 struct Stack<T> {
