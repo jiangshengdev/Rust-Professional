@@ -160,11 +160,7 @@ fn bracket_match(bracket: &str) -> bool {
         }
     }
     // 检查遍历结束后栈是否为空，若为空则所有括号成功匹配，反之则匹配失败
-    if stack.is_empty() {
-        true
-    } else {
-        false
-    }
+    stack.is_empty()
 }
 
 #[cfg(test)]

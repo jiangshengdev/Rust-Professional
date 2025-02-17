@@ -61,7 +61,7 @@ where
     // Search for a value in the BST
     fn search(&self, value: T) -> bool {
         // 从根节点开始递归查找目标值
-        fn search_node<T: Ord>(node: &Box<TreeNode<T>>, value: &T) -> bool {
+        fn search_node<T: Ord>(node: &TreeNode<T>, value: &T) -> bool {
             match node.value.cmp(value) {
                 Ordering::Equal => {
                     // 找到目标值，返回 true
@@ -70,7 +70,7 @@ where
                 Ordering::Greater =>
                 // 当前节点大于目标值，检查左子树
                 {
-                    node.left.as_ref().map_or(false, |n| {
+                    node.left.as_ref().is_some_and(|n| {
                         // 左子节点存在，递归查找目标值
                         search_node(n, value)
                     })
@@ -78,7 +78,7 @@ where
                 Ordering::Less =>
                 // 当前节点小于目标值，检查右子树
                 {
-                    node.right.as_ref().map_or(false, |n| {
+                    node.right.as_ref().is_some_and(|n| {
                         // 右子节点存在，递归查找目标值
                         search_node(n, value)
                     })
