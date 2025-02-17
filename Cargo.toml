@@ -3,7 +3,6 @@ name = "cargotest"
 version = "0.1.0"
 edition = "2021"
 
-
 [dependencies]
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
@@ -11,3 +10,83 @@ colored = "2.0"
 termion = "1.5"
 log = "0.4"
 log4rs = "1.0"
+
+[[test]]
+name = "algorithm1"
+path = "exercises/easy/algorithm1.rs"
+
+[[test]]
+name = "algorithm2"
+path = "exercises/easy/algorithm2.rs"
+
+[[test]]
+name = "algorithm3"
+path = "exercises/easy/algorithm3.rs"
+
+[[test]]
+name = "algorithm4"
+path = "exercises/easy/algorithm4.rs"
+
+[[test]]
+name = "algorithm5"
+path = "exercises/easy/algorithm5.rs"
+
+[[test]]
+name = "algorithm6"
+path = "exercises/easy/algorithm6.rs"
+
+[[test]]
+name = "algorithm7"
+path = "exercises/easy/algorithm7.rs"
+
+[[test]]
+name = "algorithm8"
+path = "exercises/easy/algorithm8.rs"
+
+[[test]]
+name = "algorithm9"
+path = "exercises/easy/algorithm9.rs"
+
+[[test]]
+name = "algorithm10"
+path = "exercises/easy/algorithm10.rs"
+
+[[test]]
+name = "algorithm11"
+path = "exercises/easy/algorithm11.rs"
+
+[[test]]
+name = "algorithm12"
+path = "exercises/easy/algorithm12.rs"
+
+[[test]]
+name = "algorithm13"
+path = "exercises/easy/algorithm13.rs"
+
+[[test]]
+name = "algorithm14"
+path = "exercises/easy/algorithm14.rs"
+
+[[test]]
+name = "algorithm15"
+path = "exercises/easy/algorithm15.rs"
+
+[[test]]
+name = "algorithm16"
+path = "exercises/easy/algorithm16.rs"
+
+[[test]]
+name = "algorithm17"
+path = "exercises/easy/algorithm17.rs"
+
+[[test]]
+name = "algorithm18"
+path = "exercises/easy/algorithm18.rs"
+
+[[test]]
+name = "algorithm19"
+path = "exercises/easy/algorithm19.rs"
+
+[[test]]
+name = "algorithm20"
+path = "exercises/easy/algorithm20.rs"
