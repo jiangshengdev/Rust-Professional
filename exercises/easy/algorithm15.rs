@@ -34,7 +34,7 @@ pub fn longest_substring_without_repeating_chars(s: String) -> i32 {
     for (i, &c) in chars.iter().enumerate() {
         // 如果字符在当前窗口内已出现，则调整窗口开始位置
         if let Some(&prev_index) = map.get(&c) {
-            if (prev_index >= start) {
+            if prev_index >= start {
                 // 当前窗口长度与记录的最大长度作比较，更新最大长度
                 max_length = max_length.max(i - start);
                 // 更新窗口起始位置为之前出现字符的下一个位置
