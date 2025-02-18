@@ -22,31 +22,30 @@
 use std::fmt::{self, Display, Formatter};
 
 pub fn find_duplicates(mut nums: Vec<i32>) -> Vec<i32> {
-    // 判断输入数组是否为空
+    // 如果传入的数组为空，直接返回一个空的向量
     if nums.is_empty() {
         return Vec::new();
     }
 
-    // 对数组进行原地排序
+    // 对数组进行原地排序，这样相同的元素会挨在一起
     nums.sort_unstable();
 
-    // 初始化用于保存重复元素结果的向量
+    // 初始化一个向量，用于存储所有找到的重复元素
     let mut duplicates = Vec::new();
 
-    // 遍历排序后的数组，从第二个元素开始判断
-    for i in 1..nums.len() {
-        // 如果当前元素和前一个元素相等，说明存在重复
-        if nums[i] == nums[i - 1] {
-            // 检查是否为首次添加该重复元素
-            if duplicates.is_empty() {
-                duplicates.push(nums[i]);
-            } else if *duplicates.last().unwrap() != nums[i] {
-                duplicates.push(nums[i]);
-            }
+    // 遍历排序后数组中所有长度为2的窗口
+    for pair in nums.windows(2) {
+        // 检查窗口中的两个元素是否相等
+        let equal = pair[0] == pair[1];
+        // 判断当前的重复数字是否还未被加入过duplicates中
+        let is_new_duplicate = duplicates.last().map_or(true, |&last| last != pair[0]);
+        // 如果两个元素相等且当前重复数字尚未加入到duplicates中，则添加该数字
+        if equal && is_new_duplicate {
+            duplicates.push(pair[0]);
         }
     }
 
-    // 返回重复元素集合
+    // 返回包含所有重复元素的向量
     duplicates
 }
 
