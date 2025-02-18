@@ -60,6 +60,12 @@ pub struct MyStack<T> {
     q2: Queue<T>,
 }
 
+impl<T> Default for MyStack<T> {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl<T> MyStack<T> {
     pub fn new() -> Self {
         Self {
