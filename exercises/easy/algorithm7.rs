@@ -122,44 +122,42 @@ impl<'a, T> Iterator for IterMut<'a, T> {
 }
 
 fn bracket_match(bracket: &str) -> bool {
-    // 使用栈来匹配括号，初始化一个空栈用于保存左括号
+    // 初始化一个空栈存储括号字符
     let mut stack = Stack::new();
+    // 遍历输入字符串中的每个字符
     for ch in bracket.chars() {
-        // 遇到左括号，入栈
-        if ch == '(' || ch == '{' || ch == '[' {
-            stack.push(ch);
-        }
-        // 遇到右括号，需要判断与栈顶左括号是否匹配
-        else if ch == ')' || ch == '}' || ch == ']' {
-            // 如果栈为空，说明没有对应的左括号，直接返回 false
-            if stack.is_empty() {
-                return false;
+        // 根据当前字符进行判断
+        match ch {
+            // 当遇到左括号时，将其压入栈中
+            '(' | '{' | '[' => {
+                // 把左括号入栈
+                stack.push(ch);
             }
-            let last = stack.pop();
-            // 检查弹出的左括号是否正确匹配当前右括号
-            if let Some(open) = last {
-                if ch == ')' {
-                    if open != '(' {
-                        return false;
+            // 当遇到右括号时
+            ')' | '}' | ']' => {
+                // 尝试从栈中弹出一个左括号
+                if let Some(open) = stack.pop() {
+                    // 检查弹出的左括号与当前右括号是否匹配
+                    match (open, ch) {
+                        // 若匹配则继续处理下一个字符
+                        ('(', ')') | ('{', '}') | ('[', ']') => {
+                            // ...匹配成功，继续...
+                        }
+                        // 如果不匹配，说明括号不匹配，返回 false
+                        _ => return false,
                     }
-                } else if ch == '}' {
-                    if open != '{' {
-                        return false;
-                    }
-                } else if ch == ']' {
-                    if open != '[' {
-                        return false;
-                    }
+                } else {
+                    // 如果栈为空，则没有对应的左括号，返回 false
+                    return false;
                 }
-            } else {
-                // 异常情况，返回 false
-                return false;
             }
-        } else {
-            // 忽略非括号字符
+            // 其他字符直接忽略
+            _ => {
+                // ...无需处理其他字符...
+            }
         }
     }
-    // 检查遍历结束后栈是否为空，若为空则所有括号成功匹配，反之则匹配失败
+    // 遍历完所有字符后，若栈为空，则所有括号匹配正确
     stack.is_empty()
 }
 
