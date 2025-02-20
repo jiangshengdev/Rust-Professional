@@ -1,5 +1,12 @@
 // src/tests.rs
+mod a_share;
 mod calc_time;
+mod date;
+mod festival;
+mod holidays;
+mod iso_week;
+mod parse_date;
+mod utils;
 
 #[cfg(test)]
 mod tests {
