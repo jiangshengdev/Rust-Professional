@@ -4,8 +4,11 @@ use crate::date::{Date, DateRange};
 /// 表示一个节假日，包含名称、节假日区间和额外休息日期
 #[derive(Debug)]
 pub struct Holiday {
+    /// 节假日名称
     pub name: &'static str,
+    /// 节假日区间
     pub period: DateRange,
+    /// 额外休息日期
     pub extra: &'static [Date],
 }
 
@@ -61,7 +64,14 @@ pub static HOLIDAYS: &[Holiday] = &[
     },
 ];
 
-/// 根据指定日期查询是否处于节假日中，返回匹配的节假日
+/// 根据指定日期查询是否处于节假日中，并返回匹配的节假日。
+///
+/// # 参数
+/// - `date`: 要查询的日期，类型为 [`Date`]
+///
+/// # 返回值
+/// 返回匹配的节假日的静态引用的 [`Holiday`]，如果没有匹配到则返回 [`None`]
+///
 pub fn query_holiday(date: &Date) -> Option<&'static Holiday> {
     HOLIDAYS
         .iter()
