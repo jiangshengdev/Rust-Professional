@@ -1,4 +1,4 @@
-pub fn odd_fibnacci_sum(threshold: u32) -> u32 {
+pub fn odd_fibonacci_sum(threshold: u32) -> u32 {
     // 初始化奇数和累加器
     let mut sum = 0;
 

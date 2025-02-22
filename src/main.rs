@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 use std::fs::{self, File};
 use std::io::{self};
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 use std::process::{exit, Command};
 use std::time::Instant;
 
@@ -229,7 +229,7 @@ fn run_cargo_command(proj_path: &PathBuf, command: &str) -> bool {
 }
 
 // 清理 target 目录
-fn clean_target_directory(proj_path: &PathBuf) {
+fn clean_target_directory(proj_path: &Path) {
     let target_dir = proj_path.join("target");
 
     if target_dir.exists() {

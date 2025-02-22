@@ -1,7 +1,7 @@
-mod fibnacci;
+mod fibonacci;
 
 fn main() {
     let num = 20;
-    let sum = fibnacci::odd_fibnacci_sum(num);
+    let sum = fibonacci::odd_fibonacci_sum(num);
     println!("{sum}");
 }
