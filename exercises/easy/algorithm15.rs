@@ -19,8 +19,6 @@
     提示：考虑使用滑动窗口技术，以 O(n) 时间复杂度高效解决此问题。
 */
 
-use std::fmt::{self, Display, Formatter};
-
 pub fn longest_substring_without_repeating_chars(s: String) -> i32 {
     // 将字符串转换为字符数组，便于使用索引访问字符
     let chars: Vec<char> = s.chars().collect();

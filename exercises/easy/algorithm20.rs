@@ -15,8 +15,6 @@
     提示：你可以使用位运算来解决此问题。
 */
 
-use std::fmt::{self, Display, Formatter};
-
 pub fn get_sum(a: i32, b: i32) -> i32 {
     // 将输入参数赋值给局部可变变量，便于后续操作
     let mut x = a;

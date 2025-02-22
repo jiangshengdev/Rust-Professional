@@ -19,8 +19,6 @@
     提示：你可以使用排序、哈希集合或者双指针技术来解决这个问题。
 */
 
-use std::fmt::{self, Display, Formatter};
-
 pub fn intersection(nums1: Vec<i32>, nums2: Vec<i32>) -> Vec<i32> {
     // 复制输入数组，避免在排序时修改原始数据
     let mut sorted1 = nums1;

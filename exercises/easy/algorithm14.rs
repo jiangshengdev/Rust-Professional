@@ -19,8 +19,6 @@
     提示：你可以就地修改输入数组来跟踪重复元素。
 */
 
-use std::fmt::{self, Display, Formatter};
-
 pub fn find_duplicates(mut nums: Vec<i32>) -> Vec<i32> {
     // 如果传入的数组为空，直接返回一个空的向量
     if nums.is_empty() {

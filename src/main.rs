@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 use std::fs::{self, File};
-use std::io::{self, Write};
-use std::path::{Path, PathBuf};
+use std::io::{self};
+use std::path::PathBuf;
 use std::process::{exit, Command};
 use std::time::Instant;
 
@@ -184,15 +184,15 @@ fn evaluate_single_file(file_path: &PathBuf) -> bool {
                 );
             }
 
-            return test_passed;
+            test_passed
         } else {
             // 编译失败
             eprintln!("\x1b[31m{}: COMPILATION FAILED\x1b[0m", file_path.display());
-            return false;
+            false
         }
     } else {
         eprintln!("Error executing rustc --test for {}", file_path.display());
-        return false;
+        false
     }
 }
 
