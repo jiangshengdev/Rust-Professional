@@ -14,7 +14,7 @@ use crate::{holidays, utils};
 /// 返回 `true` 表示该日期为交易日，否则返回 `false`
 fn is_trading_day(year: u32, month: u32, day: u32) -> bool {
     // 构造日期对象，便于后续进行节假日查询
-    let date = Date::new(month as u32, day as u32);
+    let date = Date::new(month, day);
 
     // 首先判断指定日期是否为节假日
     // 同时判断该日期是否为周末（通过utils::is_weekend函数实现）

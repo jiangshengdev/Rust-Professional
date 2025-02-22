@@ -18,7 +18,7 @@ use crate::utils;
 pub fn day_of_week_sakamoto(year: u32, month: u32, day: u32) -> u32 {
     // 复制输入的年份和月份，用于后续修改
     let mut y = year;
-    let mut m = month as u32;
+    let mut m = month;
 
     // 对于1月和2月，将其视为上一年的13月和14月，便于统一计算
     if m == 1 || m == 2 {

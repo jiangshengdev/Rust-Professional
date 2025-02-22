@@ -17,7 +17,7 @@ mod tests {
     fn test_count() {
         let mut total_score = 0.0;
         for (input1, expected) in TEST_CASES {
-            let result = new_count_distinct(*input1);
+            let result = new_count_distinct(input1);
             if result == *expected {
                 total_score += 20.0;
             }
