@@ -151,14 +151,14 @@ mod tests {
         let mut list = LinkedList::<i32>::new();
         let original_vec = [2, 3, 5, 11, 9, 7];
         let reverse_vec = [7, 9, 11, 5, 3, 2];
-        for i in 0..original_vec.len() {
-            list.add(original_vec[i]);
+        for num in original_vec.iter() {
+            list.add(*num);
         }
         println!("Linked List is {}", list);
         list.reverse();
         println!("Reversed Linked List is {}", list);
-        for i in 0..original_vec.len() {
-            assert_eq!(reverse_vec[i], *list.get(i as i32).unwrap());
+        for (i, &expected) in reverse_vec.iter().enumerate() {
+            assert_eq!(expected, *list.get(i as i32).unwrap())
         }
     }
 
@@ -167,14 +167,14 @@ mod tests {
         let mut list = LinkedList::<i32>::new();
         let original_vec = [34, 56, 78, 25, 90, 10, 19, 34, 21, 45];
         let reverse_vec = [45, 21, 34, 19, 10, 90, 25, 78, 56, 34];
-        for i in 0..original_vec.len() {
-            list.add(original_vec[i]);
+        for num in original_vec.iter() {
+            list.add(*num);
         }
         println!("Linked List is {}", list);
         list.reverse();
         println!("Reversed Linked List is {}", list);
-        for i in 0..original_vec.len() {
-            assert_eq!(reverse_vec[i], *list.get(i as i32).unwrap());
+        for (i, &expected) in reverse_vec.iter().enumerate() {
+            assert_eq!(expected, *list.get(i as i32).unwrap())
         }
     }
 }
