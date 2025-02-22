@@ -60,7 +60,7 @@ mod tests {
         let s2 = "silent".to_string();
         let result = are_anagrams(s1, s2);
         println!("Are anagrams: {}", result);
-        assert_eq!(result, true);
+        assert!(result);
     }
 
     #[test]
@@ -69,7 +69,7 @@ mod tests {
         let s2 = "vile".to_string();
         let result = are_anagrams(s1, s2);
         println!("Are anagrams: {}", result);
-        assert_eq!(result, true);
+        assert!(result);
     }
 
     #[test]
@@ -78,7 +78,7 @@ mod tests {
         let s2 = "world".to_string();
         let result = are_anagrams(s1, s2);
         println!("Are anagrams: {}", result);
-        assert_eq!(result, false);
+        assert!(!result);
     }
 
     #[test]
@@ -87,7 +87,7 @@ mod tests {
         let s2 = "Old West Action".to_string();
         let result = are_anagrams(s1, s2);
         println!("Are anagrams: {}", result);
-        assert_eq!(result, true);
+        assert!(result);
     }
 
     #[test]
@@ -96,6 +96,6 @@ mod tests {
         let s2 = "Moon starer".to_string();
         let result = are_anagrams(s1, s2);
         println!("Are anagrams: {}", result);
-        assert_eq!(result, true);
+        assert!(result);
     }
 }

@@ -132,7 +132,7 @@ mod tests {
     fn test_insert_and_search() {
         let mut bst = BinarySearchTree::new();
 
-        assert_eq!(bst.search(1), false);
+        assert!(!bst.search(1));
 
         bst.insert(5);
         bst.insert(3);
@@ -140,14 +140,14 @@ mod tests {
         bst.insert(2);
         bst.insert(4);
 
-        assert_eq!(bst.search(5), true);
-        assert_eq!(bst.search(3), true);
-        assert_eq!(bst.search(7), true);
-        assert_eq!(bst.search(2), true);
-        assert_eq!(bst.search(4), true);
+        assert!(bst.search(5));
+        assert!(bst.search(3));
+        assert!(bst.search(7));
+        assert!(bst.search(2));
+        assert!(bst.search(4));
 
-        assert_eq!(bst.search(1), false);
-        assert_eq!(bst.search(6), false);
+        assert!(!bst.search(1));
+        assert!(!bst.search(6));
     }
 
     #[test]
@@ -157,7 +157,7 @@ mod tests {
         bst.insert(1);
         bst.insert(1);
 
-        assert_eq!(bst.search(1), true);
+        assert!(bst.search(1));
 
         match bst.root {
             Some(ref node) => {

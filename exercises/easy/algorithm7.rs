@@ -168,36 +168,36 @@ mod tests {
     #[test]
     fn bracket_matching_1() {
         let s = "(2+3){func}[abc]";
-        assert_eq!(bracket_match(s), true);
+        assert!(bracket_match(s));
     }
 
     #[test]
     fn bracket_matching_2() {
         let s = "(2+3)*(3-1";
-        assert_eq!(bracket_match(s), false);
+        assert!(!bracket_match(s));
     }
 
     #[test]
     fn bracket_matching_3() {
         let s = "{{([])}}";
-        assert_eq!(bracket_match(s), true);
+        assert!(bracket_match(s));
     }
 
     #[test]
     fn bracket_matching_4() {
         let s = "{{(}[)]}";
-        assert_eq!(bracket_match(s), false);
+        assert!(!bracket_match(s));
     }
 
     #[test]
     fn bracket_matching_5() {
         let s = "[[[]]]]]]]]]";
-        assert_eq!(bracket_match(s), false);
+        assert!(!bracket_match(s));
     }
 
     #[test]
     fn bracket_matching_6() {
         let s = "";
-        assert_eq!(bracket_match(s), true);
+        assert!(bracket_match(s));
     }
 }

@@ -127,11 +127,11 @@ mod tests {
         assert_eq!(s.pop(), Ok(2));
         s.push(4);
         s.push(5);
-        assert_eq!(s.is_empty(), false);
+        assert!(!s.is_empty());
         assert_eq!(s.pop(), Ok(5));
         assert_eq!(s.pop(), Ok(4));
         assert_eq!(s.pop(), Ok(1));
         assert_eq!(s.pop(), Err("Stack is empty"));
-        assert_eq!(s.is_empty(), true);
+        assert!(s.is_empty());
     }
 }

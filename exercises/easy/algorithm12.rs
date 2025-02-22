@@ -59,7 +59,7 @@ mod tests {
         let s = "A man, a plan, a canal, Panama".to_string();
         let result = is_palindrome(s);
         println!("Is palindrome: {}", result);
-        assert_eq!(result, true);
+        assert!(result);
     }
 
     #[test]
@@ -67,7 +67,7 @@ mod tests {
         let s = "Racecar".to_string();
         let result = is_palindrome(s);
         println!("Is palindrome: {}", result);
-        assert_eq!(result, true);
+        assert!(result);
     }
 
     #[test]
@@ -75,7 +75,7 @@ mod tests {
         let s = "Hello, World!".to_string();
         let result = is_palindrome(s);
         println!("Is palindrome: {}", result);
-        assert_eq!(result, false);
+        assert!(!result);
     }
 
     #[test]
@@ -83,7 +83,7 @@ mod tests {
         let s = "No 'x' in Nixon".to_string();
         let result = is_palindrome(s);
         println!("Is palindrome: {}", result);
-        assert_eq!(result, true);
+        assert!(result);
     }
 
     #[test]
@@ -91,6 +91,6 @@ mod tests {
         let s = "Was it a car or a cat I saw?".to_string();
         let result = is_palindrome(s);
         println!("Is palindrome: {}", result);
-        assert_eq!(result, true);
+        assert!(result);
     }
 }
