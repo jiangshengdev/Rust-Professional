@@ -1,5 +1,8 @@
 // src/tests.rs
 mod conjecture;
+mod perfect_square;
+mod prime;
+mod sum;
 
 #[cfg(test)]
 mod tests {
