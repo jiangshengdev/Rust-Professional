@@ -1,6 +1,6 @@
 use crate::utils;
 
-/// 使用坂本算法计算星期几
+/// 使用 Zeller's 同余公式计算星期几
 ///
 /// # 参数
 /// - `year`: 年份，符合公历年份
@@ -12,10 +12,10 @@ use crate::utils;
 ///
 /// # 示例
 /// ```
-/// let weekday = day_of_week_sakamoto(2025, 2, 20);
+/// let weekday = day_of_week_zeller(2025, 2, 20);
 /// println!("Weekday: {}", weekday);
 /// ```
-pub fn day_of_week_sakamoto(year: u32, month: u32, day: u32) -> u32 {
+pub fn day_of_week_zeller(year: u32, month: u32, day: u32) -> u32 {
     // 复制输入的年份和月份，用于后续修改
     let mut y = year;
     let mut m = month;
@@ -33,7 +33,7 @@ pub fn day_of_week_sakamoto(year: u32, month: u32, day: u32) -> u32 {
     // 计算年份前两位，用于公式中的计算
     let j = y / 100;
 
-    // 使用坂本算法计算中间结果h
+    // 使用 Zeller's 同余公式计算中间结果
     let h = (day + (13 * (m + 1)) / 5 + k + (k / 4) + (j / 4) + 5 * j) % 7;
 
     // 将计算结果转换为星期表示，其中1代表星期一，7代表星期日
@@ -52,7 +52,7 @@ fn last_iso_week_number_of_year(year: u32) -> u32 {
     let prev_year_total = if utils::is_leap_year(year) { 366 } else { 365 };
 
     // 计算上一年12月31日是星期几
-    let prev_dec31_week_day = day_of_week_sakamoto(year, 12, 31);
+    let prev_dec31_week_day = day_of_week_zeller(year, 12, 31);
 
     // 根据ISO标准，找到上一年最后一周的周四在该年的位置
     let prev_thursday = prev_year_total + (4 - prev_dec31_week_day);
@@ -79,7 +79,7 @@ fn last_iso_week_number_of_year(year: u32) -> u32 {
 /// ```
 pub fn iso_week_number(year: u32, month: u32, day: u32) -> (u32, u32) {
     // 计算给定日期对应的星期数
-    let iso_week_day = day_of_week_sakamoto(year, month, day);
+    let iso_week_day = day_of_week_zeller(year, month, day);
 
     // 获取当前日期在当年中的序号以及该年的总天数
     let (current_day_of_year, total_days) = utils::get_year_info(year, month, day);
