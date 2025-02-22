@@ -12,7 +12,7 @@ use crate::{holidays, utils};
 /// # 返回值
 ///
 /// 返回 `true` 表示该日期为交易日，否则返回 `false`
-fn is_trading_day(year: i32, month: usize, day: i32) -> bool {
+fn is_trading_day(year: u32, month: u32, day: u32) -> bool {
     // 构造日期对象，便于后续进行节假日查询
     let date = Date::new(month as u32, day as u32);
 
@@ -35,7 +35,7 @@ fn is_trading_day(year: i32, month: usize, day: i32) -> bool {
 /// # 返回值
 ///
 /// 返回从当前日期的下一天起到下一个交易日之间的天数
-pub fn days_until_a_share(year: i32, month: usize, day: i32) -> i32 {
+pub fn days_until_a_share(year: u32, month: u32, day: u32) -> u32 {
     // 调用next_day函数获取当前日期的下一天
     let (mut y, mut m, mut d) = utils::next_day(year, month, day);
 

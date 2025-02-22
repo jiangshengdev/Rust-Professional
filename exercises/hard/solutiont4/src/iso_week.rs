@@ -15,10 +15,10 @@ use crate::utils;
 /// let weekday = day_of_week_sakamoto(2025, 2, 20);
 /// println!("Weekday: {}", weekday);
 /// ```
-pub fn day_of_week_sakamoto(year: i32, month: usize, day: i32) -> i32 {
+pub fn day_of_week_sakamoto(year: u32, month: u32, day: u32) -> u32 {
     // 复制输入的年份和月份，用于后续修改
     let mut y = year;
-    let mut m = month as i32;
+    let mut m = month as u32;
 
     // 对于1月和2月，将其视为上一年的13月和14月，便于统一计算
     if m == 1 || m == 2 {
@@ -47,7 +47,7 @@ pub fn day_of_week_sakamoto(year: i32, month: usize, day: i32) -> i32 {
 ///
 /// # 返回值
 /// 返回上一年度最后一周的 ISO 周数
-fn last_iso_week_number_of_year(year: i32) -> i32 {
+fn last_iso_week_number_of_year(year: u32) -> u32 {
     // 判断年份是否为闰年，以确定上一年的总天数
     let prev_year_total = if utils::is_leap_year(year) { 366 } else { 365 };
 
@@ -77,7 +77,7 @@ fn last_iso_week_number_of_year(year: i32) -> i32 {
 /// let (week_number, weekday) = iso_week_number(2025, 2, 20);
 /// println!("ISO Week Number: {}, Weekday: {}", week_number, weekday);
 /// ```
-pub fn iso_week_number(year: i32, month: usize, day: i32) -> (i32, i32) {
+pub fn iso_week_number(year: u32, month: u32, day: u32) -> (u32, u32) {
     // 计算给定日期对应的星期数
     let iso_week_day = day_of_week_sakamoto(year, month, day);
 
@@ -85,19 +85,19 @@ pub fn iso_week_number(year: i32, month: usize, day: i32) -> (i32, i32) {
     let (current_day_of_year, total_days) = utils::get_year_info(year, month, day);
 
     // 计算ISO标准下该周周四在全年的序号
-    let diff = 4 - iso_week_day;
-    let thursday_day_of_year = current_day_of_year + diff;
+    let diff: i32 = 4 - iso_week_day as i32;
+    let thursday_day_of_year: i32 = current_day_of_year as i32 + diff;
 
     // 如果周四的序号小于1，则说明该日期属于上一年度的最后一周
     if thursday_day_of_year < 1 {
         (last_iso_week_number_of_year(year - 1), iso_week_day)
     }
     // 如果周四的序号超出当年的总天数，则说明该日期属于下一年度的第一周
-    else if thursday_day_of_year > total_days {
+    else if thursday_day_of_year > total_days as i32 {
         (1, iso_week_day)
     }
     // 否则，根据周四所在的序号计算出当前周数
     else {
-        ((thursday_day_of_year - 1) / 7 + 1, iso_week_day)
+        (((thursday_day_of_year - 1) / 7 + 1) as u32, iso_week_day)
     }
 }

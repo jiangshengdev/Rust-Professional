@@ -7,9 +7,9 @@ use crate::utils;
 ///
 /// # 返回
 /// 返回一个元组 `(festival_month, festival_day)`，
-/// 其中 `festival_month` 是节日的月份 (usize)，
-/// `festival_day` 是节日的日期 (i32)。
-fn get_festival_date(year: i32) -> (usize, i32) {
+/// 其中 `festival_month` 是节日的月份 (u32)，
+/// `festival_day` 是节日的日期 (u32)。
+fn get_festival_date(year: u32) -> (u32, u32) {
     // 根据不同年份返回对应的节日日期
     match year {
         2025 => (1, 29),
@@ -28,7 +28,7 @@ fn get_festival_date(year: i32) -> (usize, i32) {
 /// # 返回
 /// 返回从当前日期到节日的剩余天数。<br>
 /// 若节日在当前日期之前，则返回到下一年节日的剩余天数。
-pub fn days_until_festival(year: i32, month: usize, day: i32) -> i32 {
+pub fn days_until_festival(year: u32, month: u32, day: u32) -> u32 {
     // 获取今年对应节日的月份和日期
     let (festival_month, festival_day) = get_festival_date(year);
 
