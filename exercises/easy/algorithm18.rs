@@ -23,8 +23,6 @@
     提示：你可以先按照区间的起始点排序，然后逐个合并重叠的区间。
 */
 
-use std::fmt::{self, Display, Formatter};
-
 pub fn merge_intervals(intervals: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
     // 若区间列表为空，直接返回空数组
     if intervals.is_empty() {

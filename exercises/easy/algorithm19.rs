@@ -19,8 +19,6 @@
     提示：考虑使用矩阵快速幂算法以 O(log n) 时间复杂度求解。
 */
 
-use std::fmt::{self, Display, Formatter};
-
 pub fn fib(n: i32) -> i32 {
     // 判断 n 是否为 0
     if n == 0 {

@@ -24,7 +24,6 @@
 */
 
 use std::collections::HashMap;
-use std::fmt::{self, Display, Formatter};
 
 pub fn are_anagrams(s1: String, s2: String) -> bool {
     let mut counts: HashMap<char, i32> = HashMap::new();

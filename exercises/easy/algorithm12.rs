@@ -20,8 +20,6 @@
     提示：在检查之前，可以通过将字符串转换为小写并去除非字母字符来归一化字符串。
 */
 
-use std::fmt::{self, Display, Formatter};
-
 pub fn is_palindrome(s: String) -> bool {
     // 筛选非字母字符，并将字母转换成小写后存入 vector 中
     let filtered: Vec<char> = s

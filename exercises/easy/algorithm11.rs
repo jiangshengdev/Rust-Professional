@@ -24,8 +24,6 @@
     提示：使用前 n 个数字的和减去数组元素的和来找出缺失的数字。
 */
 
-use std::fmt::{self, Display, Formatter};
-
 pub fn find_missing_number(nums: Vec<i32>) -> i32 {
     // 计算实际应该有的数字个数
     let n = (nums.len() + 1) as i32;
