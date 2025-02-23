@@ -1,4 +1,10 @@
 // src/tests.rs
+mod factorize;
+mod gcd;
+mod is_prime;
+mod mod_mul;
+mod mod_pow;
+mod pollard_rho;
 mod prime_factor;
 
 #[cfg(test)]
