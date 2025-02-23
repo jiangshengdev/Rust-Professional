@@ -1,3 +1,10 @@
+/// 计算输入数字的最大质因数
+///
+/// # 参数
+/// number - 待分解质因数的数字，类型为 u128
+///
+/// # 返回值
+/// 若 number 大于 1，则返回 number 的最大质因数；否则直接返回 number
 pub fn find_max_prime_factor(number: u128) -> u128 {
     // 对于输入小于等于1，直接返回输入值
     if number <= 1 {
@@ -10,6 +17,14 @@ pub fn find_max_prime_factor(number: u128) -> u128 {
     *factors.iter().max().unwrap()
 }
 
+/// 对数字进行质因数分解
+///
+/// # 参数
+/// n - 需要分解的数字
+/// factors - 用于存放质因数的向量
+///
+/// # 返回值
+/// 无返回值，结果通过 factors 参数传递
 fn factorize(n: u128, factors: &mut Vec<u128>) {
     // 当数值为1时结束分解
     if n == 1 {
@@ -28,6 +43,13 @@ fn factorize(n: u128, factors: &mut Vec<u128>) {
     factorize(n / factor, factors);
 }
 
+/// 通过 Pollard Rho 算法寻找非平凡因子
+///
+/// # 参数
+/// n - 需要因数分解的数字
+///
+/// # 返回值
+/// 返回 n 的一个非平凡因子
 fn pollard_rho(n: u128) -> u128 {
     // 如果 n 为偶数，最小因子为2
     if n % 2 == 0 {
@@ -56,6 +78,14 @@ fn pollard_rho(n: u128) -> u128 {
     d
 }
 
+/// 计算两个数字的最大公约数
+///
+/// # 参数
+/// a - 第一个数字，类型为 u128
+/// b - 第二个数字，类型为 u128
+///
+/// # 返回值
+/// 返回 a 和 b 的最大公约数
 fn gcd(mut a: u128, mut b: u128) -> u128 {
     while b != 0 {
         let temp = a % b;
@@ -65,6 +95,15 @@ fn gcd(mut a: u128, mut b: u128) -> u128 {
     a
 }
 
+/// 计算 (a * b) % m，防止中间乘法溢出
+///
+/// # 参数
+/// a - 被乘数，类型为 u128
+/// b - 乘数，类型为 u128
+/// m - 模数，类型为 u128
+///
+/// # 返回值
+/// 返回 (a * b) % m 的结果
 fn mod_mul(mut a: u128, mut b: u128, m: u128) -> u128 {
     let mut res = 0;
     a %= m;
@@ -79,6 +118,15 @@ fn mod_mul(mut a: u128, mut b: u128, m: u128) -> u128 {
     res
 }
 
+/// 计算 (base ^ exp) % m，采用二进制快速幂算法
+///
+/// # 参数
+/// base - 底数，类型为 u128
+/// exp - 指数，类型为 u128
+/// m - 模数，类型为 u128
+///
+/// # 返回值
+/// 返回 (base ^ exp) % m 的结果
 fn mod_pow(mut base: u128, mut exp: u128, m: u128) -> u128 {
     let mut result = 1;
     base %= m;
@@ -93,6 +141,13 @@ fn mod_pow(mut base: u128, mut exp: u128, m: u128) -> u128 {
     result
 }
 
+/// 判断一个数字是否为质数
+///
+/// # 参数
+/// n - 需要判断的数字，类型为 u128
+///
+/// # 返回值
+/// 如果 n 为质数则返回 true，否则返回 false
 fn is_prime(n: u128) -> bool {
     // 小于2的数不是素数
     if n < 2 {
