@@ -1,5 +1,11 @@
 // src/tests.rs
+mod calculate;
+mod compute;
+mod format;
+mod params;
+mod parse;
 mod retirement;
+mod update;
 
 #[cfg(test)]
 mod tests {
@@ -26,7 +32,7 @@ mod tests {
         let mut total_score = 0.0;
         for (time, tp, expected) in TEST_CASES {
             let start = Instant::now();
-            let result = retire_time(*time, *tp);
+            let result = retire_time(time, tp);
             let duration = start.elapsed();
 
             // 时间超0.2s，判定不合格
